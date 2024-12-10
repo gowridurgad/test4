@@ -1,23 +1,26 @@
 name: Publish to GPR
-
 on:
   workflow_dispatch
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        registry-url: 'https://registry.npmjs.org'
-     
-  
+        registry-url: https://npm.pkg.github.com
+    - name: Authenticate to GitHub Package Registry
+      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_TOKEN }}" > ~/.npmrc
+    - name: Publish to GPR
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
+    - uses: actions/setup-node@v4
+      with:
+         registry-url: 'https://registry.npmjs.org'
     - run: npm publish --access public
       env:
          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
