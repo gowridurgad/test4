@@ -1,0 +1,21 @@
+{
+  "name": "test4",
+  "version": "1.0.0",
+  "description": "Your package description",
+  "main": "index.js",
+  "repository":  "git://github.com/gowridurgad/test4.git"
+  
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gowridurgad/test4/issues"
+  },
+  "homepage": "https://github.com/gowridurgad/test4#readme"
+}
