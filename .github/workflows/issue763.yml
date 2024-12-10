@@ -15,6 +15,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
+        registry-url: 'https://npm.pkg.github.com'
 
     - name: Authenticate to GitHub Package Registry
       run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_TOKEN }}" > ~/.npmrc
@@ -27,6 +28,9 @@ jobs:
     - uses: actions/setup-node@v4
       with:
          registry-url: 'https://registry.npmjs.org'
+     
+    - name: Authenticate to npm registry
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
     - run: npm publish
       env:
          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
