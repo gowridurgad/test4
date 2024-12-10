@@ -3,18 +3,22 @@
   "version": "1.0.4",
   "description": "Your package description",
   "main": "index.js",
-  "repository":  "git://github.com/gowridurgad/test4.git",
-   "author": "Your Name",
+  "repository": "git://github.com/gowridurgad/test4.git",
+  "author": "Your Name",
   "license": "ISC",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registries": {
+      "npmjs": {
+        "registry": "https://registry.npmjs.org"
+      },
+      "gpr": {
+        "registry": "https://npm.pkg.github.com"
+      }
+    }
   },
- 
   "bugs": {
     "url": "https://github.com/gowridurgad/test4/issues"
   },
