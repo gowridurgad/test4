@@ -1,6 +1,6 @@
 {
-  "name": "test4",
-  "version": "1.0.1",
+  "name": "@gowridurgad/test4",
+  "version": "1.0.0",
   "description": "Your package description",
   "main": "index.js",
   "repository":  "git://github.com/gowridurgad/test4.git",
