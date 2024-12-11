@@ -12,9 +12,9 @@ jobs:
          registry-url: 'https://registry.npmjs.org'
 
     - run: |
-          pnpm config set @natoboram:registry 'https://registry.npmjs.org' --location project
-          pnpm config set //registry.npmjs.org/:_authToken '${NODE_AUTH_TOKEN}' --location project
-          pnpm publish --access public --no-git-checks
+          npm config set @natoboram:registry 'https://registry.npmjs.org' --location project
+          npm config set //registry.npmjs.org/:_authToken '${NODE_AUTH_TOKEN}' --location project
+          npm publish --access public --no-git-checks
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - uses: actions/setup-node@v4
