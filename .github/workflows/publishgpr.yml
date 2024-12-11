@@ -1,0 +1,21 @@
+name: testinggpr
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+         node-version: '20.x'
+         registry-url: 'https://npm.pkg.github.com' 
+    
+    - name: Authenticate to GitHub Package Registry
+      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN_GITHUB}}" > ~/.npmrc
+
+
+    - run: npm publish 
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
+   
