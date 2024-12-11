@@ -1,4 +1,4 @@
-name: Publish to GPR
+name: Publish to Multiple Registries
 on:
   workflow_dispatch
 jobs:
@@ -12,6 +12,8 @@ jobs:
          node-version: '20.x'
          registry-url: 'https://registry.npmjs.org'
          scope: '@durga36'
+    - name: Log .npmrc content after npm registry setup
+      run: cat ${{ runner.temp }}/.npmrc
     - name: Publish to npm
       run: npm publish --access public
       env:
@@ -28,10 +30,9 @@ jobs:
          node-version: '20.x'
          registry-url: 'https://npm.pkg.github.com'
          scope: 'gowridurgad'
-    - name: Authenticate to GitHub Package Registry
-      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN_GITHUB}}" > ~/.npmrc
-    
+    - name: Log .npmrc content after GPR registry setup
+      run: cat ${{ runner.temp }}/.npmrc
     - name: Publish to GPR
       run: npm publish 
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
