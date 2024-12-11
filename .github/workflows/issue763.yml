@@ -12,6 +12,8 @@ jobs:
          node-version: '20.x'
          registry-url: 'https://registry.npmjs.org'
          scope: '@durga36'
+    - name: Authenticate to npm registry
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
     - name: Publish to npm
       run: npm publish --access public
       env:
