@@ -11,12 +11,18 @@ jobs:
          node-version: '20.x'
          registry-url: 'https://registry.npmjs.org'
 
-    - run: npm publish --access public
+    - run: |
+          pnpm config set @natoboram:registry 'https://registry.npmjs.org' --location project
+          pnpm config set //registry.npmjs.org/:_authToken '${NODE_AUTH_TOKEN}' --location project
+          pnpm publish --access public --no-git-checks
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - uses: actions/setup-node@v4
       with:
           registry-url: 'https://npm.pkg.github.com'
-    - run: npm publish 
+    - run: |
+         npm config set @natoboram:registry 'https://npm.pkg.github.com' --location project
+         npm config set //npm.pkg.github.com/:_authToken '${NODE_AUTH_TOKEN}' --location project
+         npm publish --access public --no-git-checks
       env:
         NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
