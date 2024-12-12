@@ -31,7 +31,7 @@ jobs:
       with:
          node-version: '20.x'
          registry-url: 'https://npm.pkg.github.com'
-         scope: 'gowridurgad'
+         scope: '@gowridurgad'
     - name: Set GPR registry
       run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_TOKEN }}" > ~/.npmrc
     - name: Log .npmrc content after GPR registry setup
