@@ -7,19 +7,18 @@ jobs:
   publish-to-npm-and-gpr:
     runs-on: ubuntu-latest
     steps:
-      
       # Checkout the repo
       - uses: actions/checkout@v4
-        
+
       # Update package version and set up git
       - uses: actions/setup-node@v4
-     
 
       # Publish to NPMJS
       - uses: actions/setup-node@v4
         with:
           node-version: 12
           registry-url: 'https://registry.npmjs.org/'
+      - run: cat ~/.npmrc # Log .npmrc contents for debugging
       - name: Publish to NPMJS
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
@@ -27,7 +26,6 @@ jobs:
           npm config list
           npm publish --access public 
         env:
-          
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
       # Publish to GitHub Package Registry
@@ -36,11 +34,8 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '<@gowridurgad>'
+      - run: cat ~/.npmrc # Log .npmrc contents for debugging
       - name: Publish to GitHub Package Registry
-        run: |
-          npm config set //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
-          npm config set scope "<@gowridurgad>"
-          npm config list
-          npm publish --access public 
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.MY_TOKEN}}
