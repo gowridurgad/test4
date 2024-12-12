@@ -30,14 +30,14 @@ jobs:
       with:
            node-version: '20.x'
            registry-url: https://npm.pkg.github.com/
-           scope: '@gowridurgad'
-    - name: "Find and Replace (Start)"
-      uses: jacobtomlinson/gha-find-replace@v3
-      with:
-            find: '"name": "testinggowri"'
-            replace: '"name": "@gowridurgad/testinggowri"'
-            include: "package.json"
-            regex: true
+           
+    # - name: "Find and Replace (Start)"
+    #   uses: jacobtomlinson/gha-find-replace@v3
+    #   with:
+    #         find: '"name": "testinggowri"'
+    #         replace: '"name": "@gowridurgad/testinggowri"'
+    #         include: "package.json"
+    #         regex: true
     - name: Publish to GPR
       run: npm publish
       env:
