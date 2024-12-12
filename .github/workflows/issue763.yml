@@ -32,7 +32,8 @@ jobs:
            registry-url: 'https://npm.pkg.github.com'
            scope: '@gowridurgad'
     - name: Update package name
-      run: sed -i 's/"name":"testinggowri"/"name":"@gowridurgad\/testinggowri"/' package.json
+      run: |
+        node -e "let fs = require('fs'); let pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); pkg.name = '@gowridurgad/testinggowri'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
     - name: Publish to GPR
       run: npm publish
       env:
