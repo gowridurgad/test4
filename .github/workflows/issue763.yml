@@ -32,7 +32,7 @@ jobs:
            scope: '@durga36'
     - name: Update package name
       run: |
-            node -e "let fs = require('fs'); let pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); pkg.name = '@devi36/testinggowri'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+            node -e "let fs = require('fs'); let pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); pkg.name = '@durga36/testinggowri'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
     - name: Publish to npm
       run: npm publish
       env:
