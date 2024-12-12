@@ -39,7 +39,7 @@ jobs:
       - name: Publish to GitHub Package Registry
         run: |
           npm config set //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
-          npm config set scope "<@gowridurgad>"
+          npm config set scope "<@durga36>"
           npm config list
           npm publish --access public 
         env:
