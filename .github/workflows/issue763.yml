@@ -14,9 +14,6 @@ jobs:
          registry-url: 'https://npm.pkg.github.com' 
          
 
-    - name: Set npm registry
-      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_TOKEN }}" > ~/.npmrc
-
     - name: Publish to gpr
       run: npm publish --access public
       env:
