@@ -1,8 +1,9 @@
 name: Publish to Multiple Registries
 on:
   workflow_dispatch
+
 jobs:
-  publish-to-gpr:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -12,27 +13,25 @@ jobs:
          node-version: '20.x'
          registry-url: 'https://npm.pkg.github.com' 
          scope: '@gowridurgad'
+
     - name: Set npm registry
       run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_TOKEN }}" > ~/.npmrc
-  
+
     - name: Publish to gpr
       run: npm publish --access public
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN}}
+        NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
 
-  publish-to-npm:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: "Setup Node"
-      uses: actions/setup-node@v4
+    - uses: actions/setup-node@v4
       with:
            node-version: '20.x'
            registry-url: 'https://registry.npmjs.org'
            scope: '@durga36'
+
     - name: Update package name
       run: |
             node -e "let fs = require('fs'); let pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); pkg.name = 'testinggowri'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+
     - name: Publish to npm
       run: npm publish
       env:
