@@ -15,7 +15,7 @@ jobs:
          
 
     - name: Publish to gpr
-      run: npm publish --access public
+      run: npm publish 
       env:
         NODE_AUTH_TOKEN: ${{ secrets.MY_TOKEN }}
 
